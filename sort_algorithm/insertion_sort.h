@@ -4,6 +4,7 @@
 template<typename T>
 void insertion_sort(T* data, size_t num)
 {
+    std::cout << "choose insertion sort ." << std::endl;
     // 每次循环，都令[:loop_index]的数组变有序
     for (size_t loop_index = 1; loop_index < num; loop_index++) {
         #ifdef DEBUG

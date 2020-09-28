@@ -4,6 +4,7 @@
 template<typename T>
 void selection_sort(T* data, size_t num)
 {
+    std::cout << "choose selection sort ." << std::endl;
     // 每次循环结束，令 [current_loop] 的值为本次循环最小值
     for (size_t current_loop = 0; current_loop < num - 1; current_loop++) {
         #ifdef DEBUG
