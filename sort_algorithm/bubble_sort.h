@@ -4,7 +4,7 @@
 template<typename T>
 void bubble_sort(T* data, size_t num)
 {
-    // loop (length of data - 1) time, get biggest data every loop.
+    //  每次循环，让 [current_loop_len] 变成本次循环的最大值
     for (size_t current_loop_len = num - 1; current_loop_len > 0; current_loop_len--) {
         #ifdef DEBUG
         std::cout << "-------------- loop time " << (num - current_loop_len) << " start "
