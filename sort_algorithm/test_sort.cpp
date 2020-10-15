@@ -1,7 +1,7 @@
-#include "include/common.h"
-#include "sort_algorithm/bubble_sort.h"
-#include "sort_algorithm/selection_sort.h"
-#include "sort_algorithm/insertion_sort.h"
+#include "../include/common.h"
+#include "../sort_algorithm/bubble_sort.h"
+#include "../sort_algorithm/selection_sort.h"
+#include "../sort_algorithm/insertion_sort.h"
 
 int main()
 {
