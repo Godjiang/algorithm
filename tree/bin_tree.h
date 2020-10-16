@@ -4,7 +4,7 @@
 #include "bin_node_impl.h"
 
 #define FromParentTo(x) \
-   (IsRoot(x) ? root_ : (IsLeftChild(x) ? (x).parent_->left_child_ : (x).parent_->right_child_))
+   (IsRoot(x) ? this->root_ : (IsLeftChild(x) ? (x).parent_->left_child_ : (x).parent_->right_child_))
 
 template <typename T>
 class binTree

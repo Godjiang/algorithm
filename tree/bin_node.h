@@ -13,6 +13,17 @@
 #define HasBothChild(x) ( HasLeftChild(x) && HasRightChild(x))
 #define IsLeaf(x) (!HasChild(x))
 
+/*useful for avl tree*/
+#define Balanced(x) (stature((x).left_child_) == stature((x).right_child_))
+#define BalFac(x) (stature((x).left_child_) - stature((x).right_child_))
+#define AvlBalanced(x) (-2 < BalFac(x) && BalFac(x) < 2)
+#define tallerChild(x) (\
+    stature((x).left_child_) > stature((x).right_child_) ? (x).left_child_ : ( \
+    stature((x).left_child_) < stature((x).right_child_) ? (x).right_child_ : ( \
+    IsLeftChild(x) ? (x).left_child_ : (x).right_child_ ) \
+    ) \
+    )
+
 template <typename T>
 struct binNode {
     T data_;
@@ -38,6 +49,7 @@ struct binNode {
     {}
 
     int size();
+    binNodePos(T) succ();
     binNodePos(T) insertAsLeftChild(T const& data);
     binNodePos(T) InsertAsRightChild(T const& data);
 };

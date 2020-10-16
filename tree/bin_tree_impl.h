@@ -8,7 +8,7 @@
 template <typename T>
 int binTree<T>::updateHeight(binNodePos(T) x)
 {
-    return x->height_ = 1 + std::max(stature(x->left_child_), stature(x->left_child_));
+    return x->height_ = 1 + std::max(stature(x->left_child_), stature(x->right_child_));
 }
 
 template <typename T>

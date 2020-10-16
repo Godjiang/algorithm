@@ -4,10 +4,11 @@
 template <typename T>
 binNodePos(T) binSearchTree<T>::search(T const& e)
 {
-    binNodePos(T) tmpNode = binTree<T>::root_;
+    binNodePos(T) tmpNode = this->root_;
     while(tmpNode)
     {
-        if (e = tmpNode->data_) {
+        hot = tmpNode;
+        if (e == tmpNode->data_) {
             return tmpNode;
         } else if (e < tmpNode->data_) {
             tmpNode = tmpNode->left_child_;
@@ -16,6 +17,64 @@ binNodePos(T) binSearchTree<T>::search(T const& e)
         }
     }
     return tmpNode;
+}
+
+template <typename T>
+binNodePos(T) binSearchTree<T>::insert(T const& e)
+{
+    binNodePos(T) insert_pos = search(e);
+    if (nullptr != insert_pos) {
+        std::cout << "the date you want insert is already in the tree " << std::endl;
+        return nullptr;
+    } else {
+        if (e < hot->data_) {
+            return this->insertAsLeftChild(hot, e);
+        } else {
+            return this->insertAsRightChild(hot, e);
+        }
+    }
+}
+
+template <typename T>
+void binSearchTree<T>::remove(T const& e)
+{
+    binNodePos(T) delete_pos = search(e);
+    if (nullptr == delete_pos) {
+        std::cout << "the date you want remove is not in the tree " << std::endl;
+        return;
+    }
+    if (HasBothChild(*delete_pos)) {
+        binNodePos(T) succ_node = delete_pos->succ();
+        T tempData = delete_pos->data_;
+        delete_pos->data_ = succ_node->data_;
+        succ_node->data_ = tempData;
+        if (!HasChild(*succ_node)) {
+            FromParentTo(*succ_node) = nullptr;
+            this->updateHeightAbove(succ_node->parent_);
+            delete succ_node;
+        } else if(HasRightChild(*succ_node)) {
+            HasRightChild(*succ_node)->parent_ = succ_node->parent_;
+            FromParentTo(*succ_node) = HasRightChild(*succ_node);
+            this->updateHeightAbove(succ_node->parent_);
+            delete succ_node;
+        }
+    } else if (HasLeftChild(*delete_pos)) {
+        HasLeftChild(*delete_pos)->parent_ = delete_pos->parent_;
+        FromParentTo(*delete_pos) = HasLeftChild(*delete_pos);
+        this->updateHeightAbove(delete_pos->parent_);
+        delete delete_pos;
+
+    } else if (HasRightChild(*delete_pos)) {
+        HasRightChild(*delete_pos)->parent_ = delete_pos->parent_;
+        FromParentTo(*delete_pos) = HasRightChild(*delete_pos);
+        this->updateHeightAbove(delete_pos->parent_);
+        delete delete_pos;
+
+    } else { // no child
+        FromParentTo(*delete_pos) = nullptr;
+        this->updateHeightAbove(delete_pos->parent_);
+        delete delete_pos;
+    }
 }
 
 template <typename T>
